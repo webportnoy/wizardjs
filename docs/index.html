@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Wizard.js - Скрипт для создания обучающих подсказок</title>
+	<link rel="stylesheet" href="prism/prism.min.css">
+	<link rel="stylesheet" href="styles.css">
+	<script src="prism/prism.js"></script>
+
+	<link href="../wizardjs/wizard.min.css" rel="stylesheet">
+	<script src="../wizardjs/wizard.min.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<h1 class="logo" data-index="1" data-wizard="Шрифтовой логотип, этот текст можно выделить">Wizard.js</h1>
+		<h3 class="logo-text">Скрипт для создания интерактивного обучения работе с сервисами</h3>
+		<p data-index="0" data-wizard="Описание скрипта">
+			Создавая онлайн сервис важно чтобы пользователи быстро начали ориентироваться в системе.
+			Wizard.js позволяет создать сценарий интерактивного обучения на любой странице сайта.
+		</p>
+
+		<h2>Быстрый старт</h2>
+		<ol data-index="2" data-wizard="Список простых действий, для того чтобы начать работу с Wizard.js">
+			<li>Добавьте скрипт и стили на страницу
+<pre class="language-markup"><code>&lt;link rel="stylesheet" href="wizard.min.css"&gt;
+&lt;script src="wizard.js"&gt;&lt;/script&gt;</code></pre>
+			</li>
+			<li>Элементам, для которых требуется описание пропишите аттрибут data-wizard, содержащий текст описания
+			<pre class="language-markup"><code>&lt;div data-wizard="В это поле нужно вводить стоимость товара"&gt;
+	&lt;label&gt;Цена&lt;/label&gt;
+	&lt;input type="number" value="5000"&gt;
+&lt;/div&gt;
+</code></pre>
+			</li>
+			<li>После загрузки страницы вызовите конструктор
+				<pre class="language-javascript"><code>var wizard = new ScreenWizard();</code></pre>
+			</li>
+		</ol>
+
+		<h2>Демо</h2>
+		<p><a href="javascript:;" class="button button-start">Запусть демонстрацию</a></p>
+
+		<h2>Установка</h2>
+		<p></p>
+
+		<h2>Возможности</h2>
+		<p>Последовательность показа слайдов можно регулировать дополнительным аттрибутом <b><code>data-index</code></b>. Если этот аттрибут не указан, то слайды будут показаны в порядке, в котором они содержатся в html-коде.</p>
+		<pre class="language-markup"><code>&lt;div data-index="3" data-wizard="В это поле нужно вводить стоимость товара"&gt;
+	&lt;label&gt;Цена&lt;/label&gt;
+	&lt;input type="number" value="5000"&gt;
+&lt;/div&gt;
+</code></pre>
+		<p>При вызове конструктора можно указать настройки. Например, если вы не хотите чтобы wizard начинался сразу после загрузки, укажите autostart: false и назначьте вызов обучения на клик по кнопке:</p>
+		<pre class="language-javascript"><code>window.wizard = new ScreenWizard({
+	autostart: false
+});
+
+document.querySelector(".button-start").addEventListener("click", function(){
+	wizard.start();
+});</code></pre>
+
+		<h2>Настройки</h2>
+		<dl>
+			<dt>autostart (Default: true)</dt>
+			<dd>Включает или выключает автоматический запуск обучения после загрузки страницы</dd>
+
+			<dt>fogPadding (Default: 4)</dt>
+			<dd>Отступ от подсвечиваемого элемента в пикселях</dd>
+
+			<dt>stopOnOverlayClick (Default: true)</dt>
+			<dd>Включает или выключает выход из обучения по клику на оверлей</dd>
+
+			<dt>showOnce (Default: true)</dt>
+			<dd>Включает или выключает однократное обучение на выбранной странице. Если пользователь прошел обучение, в localStorage будет сделана об этом запись и в следующий раз пользователь уже не увидит обучение. Это работает только при автоматическом старте (autostart: true).</dd>
+
+			<dt>hintHtml</dt>
+			<dd>Шаблон всплывающего окна</dd>
+
+			<dt>buttonStrings (Default: ['Понятно','Дальше','Ок','Ясно'])</dt>
+			<dd>Массив со строками, которые попадают в кнопку при каждой смене слайда. Если не хотите чтобы надпись на кнопке менялась - просто оставте в этом массиве только один элемент.</dd>
+		</dl>
+		<p>Степень затемнения, время анимации, цвета и другие параметры стилизации можно изменить через CSS.</p>
+
+		<h2>Методы</h2>
+		<dl>
+			<dt>wizard.start();</dt>
+			<dd>Запуск обучения сначала</dd>
+			<dt>wizard.exitWizard();</dt>
+			<dd>Оставновить обучение и выйти из wizard'а</dd>
+		</dl>
+
+		<h2>Обсуждение</h2>
+		<div id="disqus_thread"></div>
+
+	</div>
+
+<script>
+(function(d,w){
+	w.wizard = new ScreenWizard({
+		autostart: false
+	});
+	d.querySelector(".button-start").addEventListener("click", function(){
+		wizard.start();
+	});
+
+	var s = d.createElement('script');
+	s.src = 'https://kpg-me.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+
+})(document, window);
+</script>
+</body>
+</html>
