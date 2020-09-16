@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Wizard.js - Скрипт для создания обучающих подсказок</title>
-	<link rel="stylesheet" href="docs/prism/prism.min.css">
-	<link rel="stylesheet" href="docs/styles.css">
-	<script src="docs/prism/prism.js"></script>
+	<link rel="stylesheet" href="prism/prism.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="prism/prism.js"></script>
 
 	<link href="wizardjs/wizard.min.css" rel="stylesheet">
 	<script src="wizardjs/wizard.min.js"></script>
@@ -89,9 +89,6 @@ document.querySelector(".button-start").addEventListener("click", function(){
 			<dd>Оставновить обучение и выйти из wizard'а</dd>
 		</dl>
 
-		<h2>Обсуждение</h2>
-		<div id="disqus_thread"></div>
-
 	</div>
 
 <script>
@@ -102,12 +99,6 @@ document.querySelector(".button-start").addEventListener("click", function(){
 	d.querySelector(".button-start").addEventListener("click", function(){
 		wizard.start();
 	});
-
-	var s = d.createElement('script');
-	s.src = 'https://kpg-me.disqus.com/embed.js';
-	s.setAttribute('data-timestamp', +new Date());
-	(d.head || d.body).appendChild(s);
-
 })(document, window);
 </script>
 </body>
